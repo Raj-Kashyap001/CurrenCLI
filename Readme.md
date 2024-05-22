@@ -15,7 +15,7 @@ Ensure you have Node.js installed on your system.
 Install the CLI tool globally using npm:
 
 ```bash
-npm install -g currency-converter-cli
+npm install -g what-currency
 ```
 
 Usage
