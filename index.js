@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import axios from "axios";
 import chalk from "chalk";
 import os from "node:os";
@@ -5,9 +7,29 @@ import path from "node:path";
 import inquirer from "inquirer";
 import fs from "fs";
 import { Command } from "commander";
+
 const program = new Command();
 
-program.version("1.0.0").description("Currency Converter CLI");
+program
+  .version("1.0.0")
+  .description("currencli: Currency Converter CLI Tool.")
+  .on("--help", () => {
+    console.log("");
+    console.log("Example:");
+    console.log("  $ currencli convert");
+    console.log("  $ currencli list");
+    console.log("  $ currencli save");
+    console.log("  $ currencli favorites");
+  });
+
+// Custom help command
+program
+  .command("help")
+  .description("Display help information")
+  .action(() => {
+    program.outputHelp();
+    process.exit(0);
+  });
 
 const getExchangeRates = async (apiKey, baseCurrency) => {
   try {
@@ -31,7 +53,6 @@ const validateApiKey = async (apiKey) => {
 };
 
 const convertCurrency = async (apiKey, amount, fromCurrency, toCurrency) => {
-  // Convert currency codes to uppercase
   fromCurrency = fromCurrency.toUpperCase();
   toCurrency = toCurrency.toUpperCase();
 
@@ -47,7 +68,6 @@ const convertCurrency = async (apiKey, amount, fromCurrency, toCurrency) => {
 };
 
 const listExchangeRates = async (apiKey, baseCurrency) => {
-  // Convert base currency code to uppercase
   baseCurrency = baseCurrency.toUpperCase();
 
   const rates = await getExchangeRates(apiKey, baseCurrency);
@@ -58,7 +78,6 @@ const listExchangeRates = async (apiKey, baseCurrency) => {
 };
 
 const saveFavoritePair = (fromCurrency, toCurrency) => {
-  // Convert currency codes to uppercase
   fromCurrency = fromCurrency.toUpperCase();
   toCurrency = toCurrency.toUpperCase();
 
@@ -216,6 +235,11 @@ const main = async () => {
         });
       }
     });
+
+  if (!process.argv.slice(2).length) {
+    program.outputHelp();
+    process.exit(0);
+  }
 
   program.parse(process.argv);
 };

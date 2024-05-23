@@ -15,7 +15,7 @@ Ensure you have Node.js installed on your system.
 Install the CLI tool globally using npm:
 
 ```bash
-npm install -g what-currency
+npm install -g currencli
 ```
 
 Usage
@@ -32,29 +32,29 @@ If you haven't saved your API key yet, the CLI tool will prompt you to enter it.
 ## Usage
 
 ```bash
-what-currency convert
+currencli convert
 ```
 
 Follow the prompts to enter the amount, source currency, and target currency. The CLI will then convert the amount to the target currency using the latest exchange rates.
 Listing Exchange Rates
 
 ```bash
-what-currency list
+currencli list
 ```
 
 Follow the prompt to enter the base currency. The CLI will then list the current exchange rates for the specified base currency.
 Saving Favorite Currency Pair
 
-bash
-
-currency-converter save
+```bash
+currencli save
+```
 
 Follow the prompts to enter the source and target currencies. The CLI will save the pair for quick access in the future.
 Showing Favorite Currency Pairs
 
-bash
-
-currency-converter favorites
+```bash
+currencli favorites
+```
 
 Displays the saved favorite currency pairs.
 API Key
