@@ -1,4 +1,4 @@
-# Currency Converter CLI
+# CurrenCLI: Currency Converter CLI
 
 A command-line interface (CLI) tool for converting amounts between different currencies using the ExchangeRate-API.
 
